@@ -1,0 +1,25 @@
+<template name="clipping">
+    <div class="container">
+
+        {{> navbar}}
+        <h1 style="padding-top: 30px">SCRAP</h1>
+    </div>
+
+    <div class="container" style="padding-top: 30px">
+        <div class="row">
+            {{#each boards}}
+                <div class="col-md-3 ">
+                    <div class="mb-4">
+                        <a id="go_article" href="/article/{{_id}}"><img src="{{image}}" alt="" class="card-img-top" style="height:170px;"></a>
+                        <div class="card-body" style="height: 300px">
+                            <h4><a href="/article/{{_id}}" style="color:black;">{{title}}</a></h4>
+                            <p class="card-text" style="height:100px;text-overflow: ellipsis;overflow: hidden;">{{{content}}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+</template>
+

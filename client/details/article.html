@@ -1,0 +1,76 @@
+<template name="article">
+    <div class="container">
+
+        <div>
+            {{> navbar}}
+        </div>
+         <!-- 본문에 가져올거 1.타이틀 ㅇ 2.본문 ㅇ 3. 날짜 ㅇ 4. 조회수 5.ㅇ 사진 ㅇ  -->
+        {{#with board}}
+        <div>
+            <!--기사 타이틀 가져오기-->
+            <div style="padding-top: 40px; padding-bottom: 40px">
+                <h1>{{title}}</h1>
+                <div style="padding-bottom: 30px">
+                    <div style="float: left; width: 75%"><b>조회수</b> {{viewCount}}</div>
+                    <div style="float: left; width: 15%" >{{createdAt}}</div>
+                    <button type="button" id="btn-clip" style="background-color: #c1c1c1 ; float: left; width:10%; color: #3c3c3c" class ="btn btn-default"><b>{{scrap}}</b></button>
+                </div>
+                <br>
+                <hr class="my-2">
+            </div>
+
+            <div class="content" style="float:left;width: 65%;">
+               <br><br>
+                <!--기사 본문-->
+                <div>
+                    <img src="{{image}}" style="width: 100%;" >
+                </div>
+                <br><br>
+                {{{content}}}
+                <br><br>
+                <hr>
+                <span>원본링크: <a href="{{srcUrl}}">{{srcUrl}}</a></span>
+                <br><br>
+            </div>
+        </div>
+        {{/with}}
+
+        <script type="text/javascript">
+            $(window).scroll(function(event){
+                if(jQuery(window).scrollTop() > jQuery(".banner").offset().top) {
+                    jQuery("#chase").css("position", "fixed");
+                }
+                else if((jQuery(window).scrollTop() < jQuery(".banner").offset().top)) {
+                    jQuery("#chase").css("position", "static");
+                }
+            });
+        </script>
+
+        <!-- 우측 부분-->
+        <div id="side_article_word">
+            <div class="content_explain" style="float:left;width: 35%;padding-left: 50px;">
+                <br><br><br>
+                <!-- 기사별 단어 검색-->
+                <s_sidebar_element>
+                    <div class="banner" style="margin-right: -50px; margin-bottom: 50px">
+                        <div id="chase" style="bottom: 50px; margin-right: 50px;">
+                            {{> articleWord}}
+                            <br>
+                            {{#if admire}}
+                                <div class="go_nextpage" style="float:right; margin-right: 5px;">
+                                    <button id="btn-gohome" class="btn" type="button" style="border-radius:1em;background-color: #a3a3a3; color: white">Go home</button>
+                                    <button id="btn-remove-article" class="btn" type="button" style="border-radius:1em;background-color: #a3a3a3; color: white">기사 삭제</button>
+                                </div>
+                            {{else}}
+                                <div class="go_nextpage" style="float:right; margin-right: 5px;">
+                                    <button id="btn-gohome" class="btn" type="button" style="border-radius:1em;background-color: #a3a3a3; color: white">Go home</button>
+                                    <button id="btn-goquiz" class="btn" type="button" style="border-radius:1em;background-color: #a3a3a3; color: white">Quiz</button>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </s_sidebar_element>
+            </div>
+        </div>
+    </div>
+</template>

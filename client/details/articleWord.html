@@ -1,0 +1,59 @@
+<template name = "articleWord">
+    <div class="input-group">
+        <input type="text" id="inp-wordSearch" style="border-radius: 0.3em; border:none; " class="form-control" placeholder="단어 찾기" aria-label="Search">
+        <svg style="margin-top: 7px; color: #999999;" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+    </div>
+
+    <div id="articleWord_show">
+        <hr color="black">
+        <div class="container" id="invisible">
+            <div class="word_save" style="padding-bottom: 30px; padding-top: 15px">
+                <!--단어 저장 버튼(중요한 단어, 어려운 단어)-->
+                <button type="button" id="btn-wordSave1" class="btn btn-default" style="background-color: #725ae6; float:left; width: 48%; color:#313131"><b>{{wordSave1}}</b></button>
+                <button type="button" id="btn-wordSave2" class="btn btn-default" style="background-color: #8de59a; float:right; width: 48%; color:#323232"><b>{{wordSave2}}</b></button>
+            </div>
+
+            <body>
+            <br>
+            <div style = "font-size:20px; padding-top: 10px; margin-bottom: -15px;">사전 검색결과</div>
+            <div class="word_dictionary" style="border:1px solid lightgray;margin-top: 20px;">
+                <div class="input-group">
+                    <div style = "font-size:25px;"><b>{{{searchWord}}}</b></div>
+                    <!--tts-->
+                    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+                    <label for="test"></label><input type="hidden" id="test" style.display='block;' value="{{searchWord}}">
+                    <button class="btn" type="button" onclick="responsiveVoice.speak(document.getElementById('test').value,'US English Female');">
+                <span aria-hidden="true">
+                   <i class="fas fa-volume-up"></i>
+                </span>
+                    </button>
+
+                    <!-- 단어 저장(즐겨찾기) 버튼 -->
+                </div>
+                <div style = "font-size:13px;">◈ 뜻</div>
+                <div class = "container">
+                    <div style = "font-size:12px;">{{meaning}}</div>
+                </div>
+                <!--        <hr color="gray" width="300px">-->
+                <div style = "font-size:13px;">◈ 예문</div>
+                <div class = "container">
+                    <div style = "font-size:12px;">{{example1}}</div>
+                    <div style = "font-size:12px;">{{example2}}</div>
+                </div>
+            </div>
+            </body>
+
+            <div style = "font-size:20px; padding-top: 30px; margin-bottom: -15px;">추가한 단어 목록</div>
+            <div class="word_add" style="border:1px solid lightgray;margin-top: 20px;">
+                {{#each wordList}}
+                    <span style="background-color: #8f7bff;">{{word}}</span>
+                    <br>
+                {{/each}}
+                {{#each wordList2}}
+                    <span style="background-color: #8ee69b;">{{word}}</span>
+                    <br>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>

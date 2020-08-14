@@ -1,0 +1,70 @@
+<template name="main">
+    <div class = "container">
+        <div style="padding-bottom: 20px">
+            {{> navbar}}
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded flex-md-row mb-4 shadow-sm h-md-500 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static" style="height: 380px">
+                        <h3 class="mb-2">Today's news</h3>
+                        <div class="mb-1 text-muted">{{dateString}}</div>
+                        <div class="today_news_title" style="color: black;white-space: nowrap;text-overflow: ellipsis;overflow: hidden">
+                            {{#each articles}} <!--articles 조회수 내림차순-->
+                                <a href="/article/{{_id}}" style="color:black">{{math @index "+" 1}}. {{title}}</a><br>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded flex-md-row mb-4 shadow-sm h-md-500 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static;" style="height: 380px;">
+                        <h3 class="mb-2">My Words</h3> <!--(많이 검색한 단어)-user별별-->
+                        <div class="mb-1 text-muted">{{dateString}}</div> <!--userid갖고오면 좋을듯-->
+                        <div class="my_words" style="color: black; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">
+                            {{#each words}} <!--word 내림차순-->
+                                <a style="color:black;">{{math @index "+" 1}}. {{word}} (+{{count}})</a><br>
+                            {{/each}}
+                        </div>
+                        <div style="text-align: right;float: bottom">
+
+                            <a id="plus_word" href="/wordBook" style="color: #999999;">단어장 가기</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    기사 10개 각각 나타내기-->
+    <div class="container">
+        <div class="row">
+            {{#each articles2}}
+
+                <div class="col-md-3 ">
+                    <div class="mb-4">
+                        <a id="go_article" href="/article/{{_id}}"><img src="{{image}}" alt="" class="card-img-top" style="height:170px;"></a>
+                        <div class="card-body" style="height: 300px">
+                            <h4><a href="/article/{{_id}}" style="color:black;">{{title}}</a></h4>
+                            <p class="card-text" style="height:100px;text-overflow: ellipsis;overflow: hidden;">{{{content}}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            {{/each}}
+        </div>
+    </div>
+
+
+    <footer class="blog-footer">
+        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
+
+</template>
